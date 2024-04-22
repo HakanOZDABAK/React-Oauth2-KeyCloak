@@ -8,10 +8,16 @@ import { AuthProvider } from 'react-oidc-context';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+const oidcConfig = {
+  authority: "http://localhost:8180/realms/oauth2-demo-realm",
+  client_id: "oauth2-demo-pcke-client",
+  redirect_uri: window.location.origin,
+
+};
 root.render(
- <AuthProvider
+ <AuthProvider {...oidcConfig}>
     <App />
-  </React.StrictMode>
+    </AuthProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
