@@ -12,6 +12,9 @@ const oidcConfig = {
   authority: "http://localhost:8180/realms/oauth2-demo-realm",
   client_id: "oauth2-demo-pcke-client",
   redirect_uri: window.location.origin,
+  responseType: 'code',
+  strictDiscoveryDocumentValidation: true,
+  scope: 'openid profile email offline_access'
 
 };
 root.render(
