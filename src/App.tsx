@@ -8,8 +8,16 @@ const keyCloakOptions = {
   realm: "oauth2-demo-realm",
   clientId: "oauth2-demo-pcke-client",
 };
-const handleToHome = async(token:any)=>{
-  console.log(await axios.get("http://localhost:8080/api/home",
+const handleToHomeAdmin = async(token:any)=>{
+  console.log(await axios.get("http://localhost:8080/api/home/admin",
+  {headers:{
+    Accept:"application/json",
+    Authorization: "Bearer " + token
+  }}
+)) 
+}
+const handleToHomeUser = async(token:any)=>{
+  console.log(await axios.get("http://localhost:8080/api/home/user",
   {headers:{
     Accept:"application/json",
     Authorization: "Bearer " + token
@@ -37,7 +45,8 @@ function App() {
 
   const handleLogOut = () => {if(keyCloak){keyCloak.logout()}};
   return <div>
-    <button onClick={()=>handleToHome(keyCloak?.token)}>Veriyi çağır</button>
+    <button onClick={()=>handleToHomeUser(keyCloak?.token)}>Veriyi çağır</button>
+    <button onClick={()=>handleToHomeAdmin(keyCloak?.token)}>ADMİN - Veriyi çağır</button>
     <button onClick={()=>handleLogOut()}>çıkış yap</button>
   </div>
 }
